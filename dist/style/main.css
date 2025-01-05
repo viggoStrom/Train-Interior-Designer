@@ -1,0 +1,132 @@
+:root {
+  --color-fg: #EEE;
+  --color-bg: #1c1b22;
+  --color-mid: #5c5a67;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--color-fg);
+}
+
+body {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: start;
+  align-items: start;
+  gap: 1rem 3ch;
+  background-color: var(--color-bg);
+  width: 100%;
+  padding: 1rem 3ch;
+}
+body > section {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+  gap: 0.3rem 0;
+}
+
+.train-set {
+  padding: 0.6rem 2ch;
+  padding-bottom: 1rem;
+  border: solid 0.5ch var(--color-mid);
+  border-radius: 1ch;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+  gap: 0.5rem 0;
+  min-width: 40ch;
+}
+.train-set > * {
+  width: 100%;
+}
+.train-set > .header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0 5ch;
+}
+.train-set > .header > .train-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.train-set > .schedule {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.train-set > .train-cars {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+}
+.train-set > .train-cars > .note {
+  font-size: 0.9rem;
+  font-weight: lighter;
+}
+.train-set > .train-cars > .list {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+  list-style-position: inside;
+}
+.train-set > .train-cars > .list > li::marker {
+  color: var(--color-mid);
+}
+
+.train-station {
+  padding: 0.6rem 2ch;
+  padding-bottom: 1rem;
+  border: solid 0.5ch var(--color-mid);
+  border-radius: 1ch;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+  gap: 0.5rem 0;
+  min-width: 40ch;
+}
+.train-station > * {
+  width: 100%;
+}
+.train-station > .header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0 5ch;
+}
+.train-station > .header > .station-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.train-station > .platforms {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+}
+.train-station > .platforms > .note {
+  font-size: 0.9rem;
+  font-weight: lighter;
+}
+.train-station > .platforms > .list {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+  list-style-position: inside;
+}
+.train-station > .platforms > .list > li::marker {
+  color: var(--color-mid);
+}
+
+/*# sourceMappingURL=main.css.map */

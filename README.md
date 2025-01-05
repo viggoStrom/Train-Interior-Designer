@@ -8,15 +8,15 @@ You can buy new trains, add cars, and upgrade existing cars. You can sponsor sta
 
 Backlog:
  - List view of all the cars in a train.
- - System for drawing a train car at a time.
- - UI system for all the menu interactions. Either via HTML or a custom system in a canvas.
  - List view of routes.
+ - UI system for all the menu interactions. Either via HTML or a custom system in a canvas.
+ - System for drawing a train car at a time.
  - Goto button for the routes.
  - Different types of cars.
  - Different types of routes.
  - Train stats
  - Train purchasing
  - Train upgrading
- - Hard coding seats
+ - Hard coding seats in a layout
  - Passengers. Spawn at a station and want to get to another station. If they get there, you get payed.
- - Staff
+ - Train staff

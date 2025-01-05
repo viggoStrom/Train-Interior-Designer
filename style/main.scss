@@ -1,0 +1,117 @@
+@use "mixins.scss" as *;
+
+:root {
+    --color-fg: #EEE;
+    --color-bg: #1c1b22;
+    --color-mid: #5c5a67;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    color: var(--color-fg);
+}
+
+body {
+    @include row($align: start);
+    gap: 1rem 3ch;
+
+
+    background-color: var(--color-bg);
+
+    width: 100%;
+    padding: 1rem 3ch;
+
+    &>section {
+        @include column();
+        gap: 0.3rem 0;
+    }
+}
+
+.train-set {
+    @include box();
+    @include column();
+    gap: 0.5rem 0;
+
+    min-width: 40ch;
+
+    &>* {
+        width: 100%;
+    }
+
+    &>.header {
+        @include row($justify: space-between);
+        gap: 0 5ch;
+
+        &>.train-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+    }
+
+    &>.schedule {
+        @include row($justify: space-between);
+    }
+
+    &>.train-cars {
+        @include column();
+
+        &>.note {
+            font-size: 0.9rem;
+            font-weight: lighter;
+        }
+
+        &>.list {
+            @include column();
+
+            list-style-position: inside;
+
+            &>li::marker {
+                color: var(--color-mid);
+            }
+        }
+    }
+}
+
+.train-station {
+    @include box();
+    @include column();
+    gap: 0.5rem 0;
+
+    min-width: 40ch;
+
+    &>* {
+        width: 100%;
+    }
+
+    &>.header {
+        @include row($justify: space-between);
+        gap: 0 5ch;
+
+        &>.station-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+    }
+
+    &>.platforms {
+        @include column();
+
+        &>.note {
+            font-size: 0.9rem;
+            font-weight: lighter;
+        }
+
+        &>.list {
+            @include column();
+
+            list-style-position: inside;
+
+            &>li::marker {
+                color: var(--color-mid);
+            }
+        }
+    }
+}

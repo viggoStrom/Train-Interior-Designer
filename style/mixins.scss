@@ -1,0 +1,26 @@
+@mixin row($justify: start, $align: center) {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin column($justify: start, $align: start) {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin grid($columns: 1, $rows: 1) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    grid-template-rows: repeat($rows, 1fr);
+}
+
+@mixin box($radius: 1ch) {
+    padding: 0.6rem 2ch;
+    padding-bottom: 1rem;
+    border: solid 0.5ch var(--color-mid);
+    border-radius: $radius;
+}
