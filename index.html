@@ -15,12 +15,28 @@
 </head>
 
 <body>
-    <section class="trains">
-        <h2>Trains</h2>
+    <section class="station">
+        <p class="name">X Station</p>
+        <p class="passengers">0 passengers</p>
+
+        <div class="passenger-pool"></div>
     </section>
 
-    <section class="stations">
-        <h2>Stations</h2>
+    <section class="controls">
+        <button onclick="PickUp()">Pick up</button>
+        <button onclick="DropOff()">Drop off</button>
+        
+        <button onclick="NextStation()">Next Station</button>
+    </section>
+
+    <section class="train">
+        <canvas>Your browser does not support the HTML5 canvas element.</canvas>
+        
+        <div>
+            <p class="name">Train</p>
+            
+            <ol class="cars"></ol>
+        </div>
     </section>
 </body>
 

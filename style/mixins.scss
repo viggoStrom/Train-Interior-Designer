@@ -1,4 +1,4 @@
-@mixin row($justify: start, $align: center) {
+@mixin row($justify: start, $align: start) {
     display: flex;
     flex-flow: row nowrap;
     justify-content: $justify;
@@ -18,9 +18,14 @@
     grid-template-rows: repeat($rows, 1fr);
 }
 
-@mixin box($radius: 1ch) {
+@mixin box() {
     padding: 0.6rem 2ch;
-    padding-bottom: 1rem;
     border: solid 0.5ch var(--color-mid);
-    border-radius: $radius;
+    border-radius: 1ch;
+}
+
+@mixin outline() {
+    &:focus {
+        outline: var(--color-primary) 0.3ch solid;
+    }
 }

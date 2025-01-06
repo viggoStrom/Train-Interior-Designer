@@ -1,0 +1,19 @@
+@use "mixins.scss" as *;
+
+button {
+    all: unset;
+    cursor: pointer;
+    user-select: none;
+
+    @include box;
+    @include outline;
+
+    padding: 0.5rem 1ch;
+
+    &:active,
+    &:hover {
+        background-color: var(--color-mid);
+        color: var(--color-bg);
+        font-weight: bold;
+    }
+}

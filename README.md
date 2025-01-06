@@ -20,3 +20,4 @@ Backlog:
  - Hard coding seats in a layout
  - Passengers. Spawn at a station and want to get to another station. If they get there, you get payed.
  - Train staff
+ - Passengers tell you when they wanna get off by their color. Longer travel gives more money but they will hate you if you take them too far.
