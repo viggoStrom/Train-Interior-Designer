@@ -57,6 +57,30 @@ body > section.train {
   gap: 1rem 2ch;
   height: 20rem;
 }
+body > section.train > .train-car-pools {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+}
+body > section.train > .train-car-pools > div {
+  padding: 0.6rem 2ch;
+  border: solid 0.5ch var(--color-mid);
+  border-radius: 1ch;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: start;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 0.5ch;
+  min-height: 17rem;
+  width: 15ch;
+}
+body > section.train > .train-car-pools > div > * {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-primary);
+}
 body > section.train > canvas {
   background-color: var(--color-mid);
   height: 100%;
@@ -72,7 +96,6 @@ body > section.train > div {
   height: 100%;
 }
 body > section.train > div > .cars {
-  flex: 1;
   list-style-position: inside;
 }
 body > section.train > div > .cars .dim, body > section.train > div > .cars > p:first-child, body > section.train > div > .cars > li::marker {

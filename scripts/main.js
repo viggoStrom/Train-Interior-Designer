@@ -123,9 +123,7 @@ const updateDOM = () => {
     const stationSection = document.querySelector("section.station");
     stationSection.querySelector(".name").textContent = station.name;
     stationSection.querySelector(".passengers").textContent = `${station.passengers} passengers`;
-    stationSection.querySelector(".passenger-pool").innerHTML = new Array(station.passengers).fill(0).map(() => `
-        <div></div>
-    `.trim()).join("");
+    stationSection.querySelector(".passenger-pool").innerHTML = new Array(station.passengers).fill(`<div></div>`).join("");
 
     // Train
     const trainSection = document.querySelector("section.train");
@@ -136,27 +134,26 @@ const updateDOM = () => {
         <span${car.passengers === car.capacity ? " class='dim'" : ''}>
         (${car.passengers}/${car.capacity})</span>
     </li>`.trim()).join("");
+
+    trainSection.querySelector(".train-car-pools").innerHTML = "";
+    myTrain.cars.forEach(car => {
+        const carPool = document.createElement("div");
+        carPool.innerHTML = new Array(car.passengers).fill(`<div></div>`).join("");
+        trainSection.querySelector(".train-car-pools").appendChild(carPool);
+    });
 };
 
-window.PickUp = () => {
-    const station = stations[myTrain.stationIndex];
-    const car = myTrain.cars[1];
+window.ToggleDoors = () => {
+    // Update door status in the DOM
+    const doorStatus = document.querySelector(".door-status");
+    doorStatus.textContent = doorStatus.textContent === "Open" ? "Closed" : "Open";
 
-    if (car.passengers < car.capacity && station.passengers > 0) {
-        car.passengers++;
-        station.passengers--;
-    }
+    if (doorStatus.textContent === "Closed") return;
 
-    updateDOM();
-};
-
-window.DropOff = () => {
-    const station = stations[myTrain.stationIndex];
-    const car = myTrain.cars[1];
-
-    if (car.passengers > 0) {
-        car.passengers--;
-        station.passengers++;
+    const station = stations.at(myTrain.stationIndex);
+    if (myTrain.cars[1].capacity - myTrain.cars[1].passengers > station.passengers) {
+        myTrain.cars[1].passengers += station.passengers;
+        station.passengers = 0;
     }
 
     updateDOM();

@@ -23,18 +23,20 @@
     </section>
 
     <section class="controls">
-        <button onclick="PickUp()">Pick up</button>
-        <button onclick="DropOff()">Drop off</button>
-        
+        <p class="door-status">Closed</p>
+
+        <button onclick="ToggleDoors()">Open Doors</button>
+
         <button onclick="NextStation()">Next Station</button>
     </section>
 
     <section class="train">
-        <canvas>Your browser does not support the HTML5 canvas element.</canvas>
-        
+        <!-- <canvas>Your browser does not support the HTML5 canvas element.</canvas> -->
+        <div class="train-car-pools"></div>
+
         <div>
             <p class="name">Train</p>
-            
+
             <ol class="cars"></ol>
         </div>
     </section>
