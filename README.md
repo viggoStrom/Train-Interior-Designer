@@ -1,64 +1,61 @@
 # Train Interior Designer and Simulator
+### The roguelike train designer
 
-You own a train. You get to design the layout of every car to maximize your passenger throughput whilst balancing comfort to keep a good reputation.
+You are the owner of your very own train. You design every car and you decide which locomotives you use. You play one run at a time until you run out of money. You are therefore motivated to earn money to buy better stuff and improve your designs.
 
-## Mentality
-You run **your** train. You control the layouts of the cars, which locomotives you and how you wanna play. I will allow for different equally viable playstyles where you can prioritize things like capacity, comfort, speed and more. You strive to be the most efficient train operator, motivated by improving your own skills in train interior design.
+## Main Gimmick
+Boarding and disembarking is run as a simulation. Not much more than that.. The rest of the gameplay loop is there to motivate you to optimize your train for this simulation.
 
-## Gameplay loop
- - Arrive at the first station, pick up all the passengers at the station (or as many as you can fit).
-   - You get paid for each passenger you pick up but only at the end of the day (like your counting the tickets later. Will be convenient since some passengers pay more but it depends on how far they ride. I guess they could get their ride length generated at spawn).
- - Travel to the next station. This will take one hour of in game time. (Running above or below nominal power will affect this which will affect your popularity).
- - Most passengers will get off at the next station. The other ones will have an increased chance of getting off at the next station, and the next, and so on. They pay you more the further they go.
-- All the passengers waiting at the station will get on. At the same time as the rest of course, like real people :|
-- Repeat until you reach the end of the day.
-- At days end (or if you cancel the train that day which will decrease your popularity) you get to modify your train. Changing layout in a car, getting a new engine, adding a car, etc.
-- You will be graded by how many people you transport per hour (p/h). p/h will be calculated by averaging transport during a day (maybe don't count canceled days) and your score should probably be averaged over multiple days so one bad day won't ruin you. Increased score will allow higher ticket prices => more furniture and trains and such.
-- When done with modifications, you can start the next day.
+## Gameplay Loop of a Run
+1. Start a day with a basic train (basic loco + basic car probably).
+1. Arrive at your first station and pick up as many passengers as you can fit.
+1. Travel to the next station. Traveling between stations takes a set amount of time. Most passengers will get off here. When passengers spawn they know how many stops they wanna travel. They pay more for longer trips.
+1. Repeat until you reach the end of the day or you cancel the train for that day.
+1. At the end of the day, you arrive at your workshop where you can upgrade or modify your train with the money you earn.
+1. When you are satisfied with your train, you can start the next day.
+1. You do this until you run out of money.
 
+The longer you stay afloat, the more tech you will unlock for future runs. Special challenges will also be there to make you try something new like running with only cargo locomotives and cars or to recreate the Polar Express etc.
 
-## Popularity
-Popularity is measured on a scale (maybe 0-5 stars?) and may affect your ticket prices. Probably automatically, I don't want this game to turn into a simulator... Besides the simulation of boarding of course :P
+## Considerations
+When doing a run, you always weight the importance between a couple of things. Money is your ultimate motivator, without it you will just go bankrupt of course. But you also need to consider your ticket prices, popularity, space, passenger mood, speed, and length. 
 
-Score could make passengers more likely to stay longer on the train which will increase your profits.
+Ticket prices are the most important thing. They are practically the only way of making money. Be weary though, passengers will only tolerate so much. It's a balancing game of how much you can charge for a ticket and how many passengers you can get on your train. Too high, and you will have empty cars and lose popularity. Too low, and you will fill your cars but won't make enough money to keep the train running.
 
-Popularity is gained by good decor, good lighting, ~~food~~, ~~entertainment~~, ~~cleanliness~~ and running on time. To start off with, the time criteria is probably gonna be the first and only to be implemented. The rest may be added later.
+Popularity will affect how much passengers are willing to pay to ride and how many passengers show up at the stations. It is increased by nice decor, comfort and punctuality. It is decreased by bad decor, discomfort, and being late. Increased popularity will also increase retention.
 
-Popularity could be on a car to car basis (plus speed probably) to allow for different classes.
+Space is simply how big the grids are in your cars. More space can mean more seats, or more decor. Generally cars with more space have trade-offs like price or popularity.
 
+Passenger mood is affected by decor and which furniture you choose. Bunks for instance will increase retention by a lot but it's gonna make passengers drowsy and slower to disembark. Cold lighting will make your passengers quicker on their feet at the cost of retention.
 
-## Features & Motivations
+Speed is how fast your train is. This is determined by the power of your locomotives. When running at nominal power, you travel at speed. Running below nominal power will lead to slower times which will surely affect your popularity negatively. People do not enjoy late trains.
 
-### Simulating boarding
-It's the main concept of the game which will make you have to optimize your train which is the fun part i hope.
-
-### Scoring by passengers per hour (p/h)
-I hope this will be a motivator for the player to optimize instead of just getting as much cash as possible. I also wanna balance the game so multiple playstyles are viable. I'm thinking, long slow-steamer with a lot of capacity, nice express train with higher prices due to nice decor, or a more balanced approach or something else! I hope this will make the game playable for more than like a couple minutes.
-
-### Popularity
-You need to be motivated to make fancy trains. Without it you would make tin cans. Having this be like a more localized score that mostly affects single cars rather than your whole experience. Popularity could modify things such as ticket prices, retention time (how many stations people travel) and maybe even passenger count? 
-
-### Ticket Pricing
-I want this to be done automatically. You will still see the price always so you can measure your performance against that number. Ticket prices will be affected by things like your popularity and random demand and trip length.
-
-## Station length limits
-I want to have stations have length limits. This will pressure the player to not make 10 km long trains to increase passenger counts. This will also make the player consider whether stacking locomotives is worth it. 
-
-## Grid based design
-Cars will have grids in them for the sake of easier implementation and hopefully easier to approach. You will need to leave space for people to walk around and get off the train but you could make it a maze if you want to at the cost of throughput.
-
-### Staff - Eventually
-For staff to be useful I would need to implement food serving (which would require a service car) or dirty cars to have cleaning staff or something like that. That will be a later feature.
+Having a super long train is not going to be a solution to every problem either. Stations have length limits. Even if you could get a really long train to run at nominal power, if the station is too short your embark and disembark times will be atrocious if even possible. Most cars let passengers pass through to the next car but some cars will not allow this so disembarking might not even be possible. Passengers that are not let off will be mad and require compensation which will eat into your bottom line.
 
 
-## Cars & Locomotives
+## Pressures
+You will be pressured to make a train that is both efficient and comfortable. You will need to balance throughput with comfort. You will need to balance speed with popularity. You will need to balance space with price. You will need to balance everything to make the most money.
+
+Taxes and fees are brutal. Inflation is also rough these days. Costs will increase over time so you can't just fall into a rhythm that works. You live in capitalist society after all. Running late and locking passengers on your train will incur fines and settlement costs. Stopping at stations also costs money of course, as well as a longer train. That's valuable station real estate you're taking up. You also have to pay for cleaning of your train of course. The more passengers you transport, the higher those costs are going to be. At the end of the day you will get a summery of the day's costs and earnings.
+
+Events will occur, to your benefit and detriment. You may have an engine failure to decrease your nominal power for the day. It could be a holiday which increases passenger counts (hopefully you have space for them all *wink*). A competitor might go out of business giving you more passengers and so on. Events exist to keep the game interesting and to keep you on your toes like any good roguelike.
+
+
+## Time scale
+Every run will start at day and month zero. You run trains on a day to day basis but you only do one day per month so after 12 days of playing, it's been a year. This is to make the scale as a whole more sensible, especially since tech/new furniture, locomotives and cars may be unlocked if you progress far enough. Having a tech be unlocked after you successfully run a train for 5 years for instance would make more sense than 60 days.
+
+
+
+## Items & Stuff
+
+### Furniture
+Different decor and lights could affect passengers differently. Bunks on a train could drastically increase retention while slowing passengers speed down when disembarking. Warmer lights could do the same. Cold lighting could increase passenger speed but decrease retention.
+
+### Cars & Locomotives
 I'm thinking that there will be a couple of car types and locomotives with different strengths and weaknesses. Their absolute stats will improve if you get a better train in that category but the relative stats of the train will not change. Can't buy yourself out of a trade off.
 
-### Cars
+#### Cars
 You design the interiors of the cars on a grid system. Furniture can be things like seats, tables, poles, windows, dividers?, lights?, and more. 
-
-#### Furniture
-Different decor and lights could affect passengers differently. Bunks on a train could drastically increase retention while slowing passengers speed down when disembarking. Warmer lights could do the same. Cold lighting could increase passenger speed but decrease retention.
 
 Getting a class of car that has more doors will help improve throughput but doors themselves will take up more space.
 
@@ -75,7 +72,7 @@ Passthrough on a car means passengers can travel between cars to get off at smal
 | Modern   | 2              | Normal    | High            | Expensive | High           | Yes             | Better than basic but at a cost                                                   |
 <!-- Protected row to prevent table shenanigans -->
   
-### Locomotives 
+#### Locomotives 
 There could be different classes of locomotives in multiple tiers that all have different nominal power so that their prices can develop at different paces.
 
 I guess you could stack locomotives but you would get punished from stations being too small. I'm gonna make locomotives take up space at stations (I blame signaling and safety I guess). Not all locomotives allow for stacking and some give bonuses or penalties to power for stacking. Modifiers are not finalized.
@@ -91,11 +88,3 @@ Stacking modifiers. The modifier applies to the second, third, etc locomotive in
 | Modern Electric w/space  | Normal            | Each End (0.8x) | Expensive      | High           | Some                | Loco with passengers??            |
 | Shinkansen               | Very High         | Each end (0.8x) | Very Expensive | Very High      | None                | Fast and efficient. Shinkansen!   |
 <!-- Protected row to prevent table shenanigans -->
-
-
-## Stations
-They spawn with a certain passenger count (maybe modified by score or popularity?) and they know how many stops they wanna travel. They pay more for longer distances of course. 
-
-Stations have length limits. If you
-
-Stations could have length limits (I could simply prevent you from stopping there, loosing you passengers and popularity or I could just stop the train so only some cars are accessible which would also be bad for you since passengers are gonna be ass slow getting off since they would have to walk through the train. If possible even)
