@@ -4,7 +4,7 @@
 You are the owner of your very own train. You design every car and you decide which locomotives you use. You play one run at a time until you run out of money. You are therefore motivated to earn money to buy better stuff and improve your designs.
 
 ## Main Gimmick
-Boarding and disembarking is run as a simulation. Not much more than that.. The rest of the gameplay loop is there to motivate you to optimize your train for this simulation.
+Boarding and disembarking is run as a simulation. Not much more than that. The rest of the gameplay loop is there to motivate you to optimize your train for this simulation.
 
 ## Gameplay Loop of a Run
 1. Start a day with a basic train (basic loco + basic car probably).
