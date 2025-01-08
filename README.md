@@ -2,6 +2,9 @@
 
 You own a train. You get to design the layout of every car to maximize your passenger throughput whilst balancing comfort to keep a good reputation.
 
+## Mentality
+You run **your** train. You control the layouts of the cars, which locomotives you and how you wanna play. I will allow for different equally viable playstyles where you can prioritize things like capacity, comfort, speed and more. You strive to be the most efficient train operator, motivated by improving your own skills in train interior design.
+
 ## Gameplay loop
  - Arrive at the first station, pick up all the passengers at the station (or as many as you can fit).
    - You get paid for each passenger you pick up but only at the end of the day (like your counting the tickets later. Will be convenient since some passengers pay more but it depends on how far they ride. I guess they could get their ride length generated at spawn).
@@ -75,15 +78,18 @@ Passthrough on a car means passengers can travel between cars to get off at smal
 ### Locomotives 
 There could be different classes of locomotives in multiple tiers that all have different nominal power so that their prices can develop at different paces.
 
-I guess you could stack locomotives but you would get punished from stations being too small. I'm gonna make locomotives take up space at stations (I blame signaling and safety I guess).
+I guess you could stack locomotives but you would get punished from stations being too small. I'm gonna make locomotives take up space at stations (I blame signaling and safety I guess). Not all locomotives allow for stacking and some give bonuses or penalties to power for stacking. Modifiers are not finalized.
 
-| **Type**                 | **Nominal Power** | **Price** | **Popularity** | **Passenger Space** | **Note**                          |
-| ------------------------ | ----------------- | --------- | -------------- | ------------------- | --------------------------------- |
-| Basic                    | Normal            | Normal    | Normal         | None                | All-rounder                       |
-| Cargo                    | Very High         | Normal    | Low            | None                | Power over looks                  |
-| Steam                    | Low               | Normal    | Very High      | None                | Who doesn't love vintage trains?? |
-| Modern Electric wo/space | High              | Expensive | High           | None                | Better than basic besides price   |
-| Modern Electric w/space  | Normal            | Expensive | High           | Some                | Loco with passengers??            |
+Stacking modifiers. The modifier applies to the second, third, etc locomotive in the stack. The first locomotive is always at nominal power. A second Basic locomotive would be at 0.8x power. A third would be at 0.8^2x of the first locomotive's power etc. Some locomotives will not allow stacking but may allow for double headed trains. So they will only be allowed two locomotives and they probably won't be on full power. 
+
+| **Type**                 | **Nominal Power** | **Stacking**    | **Price**      | **Popularity** | **Passenger Space** | **Note**                          |
+| ------------------------ | ----------------- | --------------- | -------------- | -------------- | ------------------- | --------------------------------- |
+| Basic                    | Normal            | Yes (0.8x)      | Normal         | Normal         | None                | All-rounder                       |
+| Cargo                    | Very High         | Yes (1.5x)      | Normal         | Low            | None                | Power over looks                  |
+| Steam                    | Low               | Yes (1x)        | Normal         | Very High      | None                | Who doesn't love vintage trains?? |
+| Modern Electric wo/space | High              | Each End (0.8x) | Expensive      | High           | None                | Better than basic besides price   |
+| Modern Electric w/space  | Normal            | Each End (0.8x) | Expensive      | High           | Some                | Loco with passengers??            |
+| Shinkansen               | Very High         | Each end (0.8x) | Very Expensive | Very High      | None                | Fast and efficient. Shinkansen!   |
 <!-- Protected row to prevent table shenanigans -->
 
 
