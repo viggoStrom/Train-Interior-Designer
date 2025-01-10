@@ -1,23 +1,28 @@
 {
   "name": "train-interior-designer",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "main.ts",
   "repository": "https://github.com/viggoStrom/Train-Interior-Designer.git",
   "author": "Viggo Ström <viggostrom05@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run scss-build && yarn run webpack-build",
-    "scss": "sass --watch style/main.scss:dist/style/main.css",
-    "scss-build": "sass --style compressed style/main.scss:dist/style/main.css",
-    "webpack": "webpack --watch --mode development",
-    "webpack-build": "webpack --mode production"
+    "dev": "concurrently \"yarn run scss-dev\" \"yarn run webpack-dev\"",
+    "prod": "yarn run scss-build && yarn run webpack-build",
+    "scss-dev": "sass --watch style/main.scss:dist/style/main.css",
+    "scss-prod": "sass --style compressed style/main.scss:dist/style/main.css",
+    "webpack-dev": "webpack --watch --mode development",
+    "webpack-prod": "webpack --mode production"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
-    "babel-loader": "^9.2.1",
+    "concurrently": "^9.1.2",
     "sass": "^1.83.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.3",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "@types/three": "^0.172.0",
+    "three": "^0.172.0"
   }
 }
