@@ -40,8 +40,5 @@ body {
   background-color: var(--color-bg);
   width: 100%;
 }
-body > canvas {
-  width: 100%;
-}
 
 /*# sourceMappingURL=main.css.map */
