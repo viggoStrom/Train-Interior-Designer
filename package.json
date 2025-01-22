@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "concurrently \"yarn run scss-dev\" \"yarn run webpack-dev\"",
-    "prod": "yarn run scss-build && yarn run webpack-build",
+    "prod": "yarn install && yarn run scss-build && yarn run webpack-build",
     "scss-dev": "sass --watch style/main.scss:dist/style/main.css",
     "scss-prod": "sass --style compressed style/main.scss:dist/style/main.css",
     "webpack-dev": "webpack --watch --mode development",
