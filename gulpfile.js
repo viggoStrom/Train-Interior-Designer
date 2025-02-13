@@ -34,14 +34,19 @@ gulp.task("scss:watch", () => {
     return gulp.watch("./src/style/**/*.scss", gulp.series("scss:build"));
 });
 
-// Copy rest of src
+// Copy src
 gulp.task("copy:build", () => {
     return gulp.src(["./src/**/*", "!./src/**/*.ts", "!./src/**/*.scss"])
         .pipe(vfs.dest("./dist"));
+});
+
+// Watch src
+gulp.task("copy:watch", () => {
+    return gulp.watch(["./src/**/*", "!./src/**/*.ts", "!./src/**/*.scss"], gulp.series("copy:build"));
 });
 
 // Global build
 gulp.task("build", gulp.parallel("ts:build", "scss:build", "copy:build"));
 
 // Global watch
-gulp.task("dev", gulp.parallel("ts:watch", "scss:watch"));
+gulp.task("dev", gulp.parallel("ts:watch", "scss:watch, copy:watch"));
