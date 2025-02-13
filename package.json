@@ -10,18 +10,19 @@
     "build": "gulp build"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.0.6",
     "concurrently": "^9.1.2",
     "gulp": "^5.0.0",
     "gulp-sass": "^6.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "sass": "^1.83.1",
+    "tailwindcss": "^4.0.6",
     "typescript": "^5.7.3",
     "vinyl-fs": "^4.0.0"
   },
   "dependencies": {
-    "@tailwindcss/cli": "^4.0.6",
     "@types/three": "^0.172.0",
     "stats-js": "^1.0.1",
-    "tailwindcss": "^4.0.6",
     "three": "^0.172.0"
   }
 }

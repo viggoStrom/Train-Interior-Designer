@@ -1,8 +1,7 @@
 const gulp = require("gulp");
 const vfs = require("vinyl-fs");
 const sass = require("gulp-sass")(require("sass"));
-const path = require("path");
-const fs = require("fs");
+const ts = require("gulp-typescript");
 const { exec } = require("child_process");
 
 const stdHandler = (err, stdout, stderr) => {
@@ -16,11 +15,13 @@ const stdHandler = (err, stdout, stderr) => {
 
 // Compile TS
 gulp.task("ts:build", () => {
-    return exec("tsc", stdHandler);
+    return gulp.src("./src/**/*.ts")
+        .pipe(ts.createProject("tsconfig.json")())
+        .pipe(vfs.dest("./dist"));
 });
 // Watch TS
 gulp.task("ts:watch", () => {
-    return exec("tsc -w", stdHandler);
+    return gulp.watch("./src/**/*.ts", gulp.series("ts:build"));
 });
 
 // Compile SCSS
@@ -34,13 +35,24 @@ gulp.task("scss:watch", () => {
     return gulp.watch("./src/style/**/*.scss", gulp.series("scss:build"));
 });
 
+// Compile tailwindcss
+gulp.task("tailwind:build", () => {
+    return exec(`
+        npx @tailwindcss/cli -i ./src/style/tailwind.tw.css -o ./dist/style/tailwind.tw.css
+        `.trim(), stdHandler);
+});
+// Watch tailwindcss
+gulp.task("tailwind:watch", () => {
+    return gulp.watch("./src/style/tailwind.tw.css", gulp.series("tailwind:build"));
+});
+
 // Copy src
 gulp.task("copy:build", () => {
     return gulp.src([
         "./src/**/*",
         "!./src/**/*.ts",
         "!./src/**/*.scss",
-        "!./src/style/tailwind.css",
+        "!./src/style/tailwind.tw.css",
     ]).pipe(vfs.dest("./dist"));
 });
 // Watch src
@@ -49,21 +61,17 @@ gulp.task("copy:watch", () => {
         "./src/**/*",
         "!./src/**/*.ts",
         "!./src/**/*.scss",
-        "!./src/style/tailwind.css",
+        "!./src/style/tailwind.tw.css",
     ], gulp.series("copy:build"));
 });
 
-// Compile tailwindcss
-gulp.task("tailwind:build", () => {
-    return exec("npx @tailwindcss/cli -i ./src/style/tailwind.css -o ./dist/style/tailwind.css", stdHandler);
-});
-// Watch tailwindcss
-gulp.task("tailwind:watch", () => {
-    return gulp.watch("./src/style/tailwind.css", gulp.series("tailwind:build"));
-});
-
 // Global build
-gulp.task("build", gulp.parallel("ts:build", "scss:build", "copy:build", "tailwind:build"));
+gulp.task("build", gulp.parallel("ts:build", "scss:build", "tailwind:build", "copy:build"));
 
 // Global watch
-gulp.task("dev", gulp.parallel("ts:watch", "scss:watch", "copy:watch", "tailwind:watch"));
+gulp.task("dev", () => {
+    gulp.series(
+        "build",
+        gulp.parallel("ts:watch", "scss:watch", "tailwind:watch", "copy:watch"),
+    )();
+});
