@@ -49,4 +49,4 @@ gulp.task("copy:watch", () => {
 gulp.task("build", gulp.parallel("ts:build", "scss:build", "copy:build"));
 
 // Global watch
-gulp.task("dev", gulp.parallel("ts:watch", "scss:watch, copy:watch"));
+gulp.task("dev", gulp.parallel("ts:watch", "scss:watch", "copy:watch"));
