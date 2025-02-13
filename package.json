@@ -1,25 +1,21 @@
 {
   "name": "train-interior-designer",
   "version": "1.0.0",
-  "main": "main.ts",
+  "main": "dist/main.js",
   "repository": "https://github.com/viggoStrom/Train-Interior-Designer.git",
-  "author": "Viggo Ström <viggostrom05@gmail.com>",
+  "author": "Viggo Ström <viggostrom05+trainRogue@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently \"yarn run scss-dev\" \"yarn run webpack-dev\"",
-    "prod": "yarn install && yarn run scss-build && yarn run webpack-build",
-    "scss-dev": "sass --watch style/main.scss:dist/style/main.css",
-    "scss-prod": "sass --style compressed style/main.scss:dist/style/main.css",
-    "webpack-dev": "webpack --watch --mode development",
-    "webpack-prod": "webpack --mode production"
+    "dev": "gulp dev",
+    "build": "gulp build"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
+    "gulp": "^5.0.0",
+    "gulp-sass": "^6.0.0",
     "sass": "^1.83.1",
-    "ts-loader": "^9.5.1",
     "typescript": "^5.7.3",
-    "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.1"
+    "vinyl-fs": "^4.0.0"
   },
   "dependencies": {
     "@types/three": "^0.172.0",
