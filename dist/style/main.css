@@ -1,3 +1,4 @@
+@import "tailwind.css";
 button {
   all: unset;
   cursor: pointer;
