@@ -1,8 +1,40 @@
 const gulp = require("gulp");
 const vfs = require("vinyl-fs");
-const sass = require("gulp-sass")(require("sass"));
 const ts = require("gulp-typescript");
+const babel = require("gulp-babel");
 const { exec } = require("child_process");
+
+const paths = {
+    scripts: {
+        src: [
+            "src/**/*.ts",
+            "src/**/*.tsx",
+            "!src/**/*.d.ts",
+        ],
+        watch: ["src/**/*.ts", "src/**/*.tsx"],
+        dest: "dist/",
+    },
+    styles: {
+        src: "src/style/tailwind.tw.css", // Tailwind is using exec and only accepts string, not string[]
+        watch: ["src/**/*.tw.css", "src/**/*.html"],
+        dest: "dist/style/tailwind.tw.css", // Tailwind is using exec and only accepts string, not string[]
+    },
+    copy: {
+        src: [
+            "src/**/*",
+            "!src/**/*.ts",
+            "!src/**/*.tsx",
+            "!src/**/*.tw.css",
+        ],
+        watch: [
+            "src/**/*",
+            "!src/**/*.ts",
+            "!src/**/*.tsx",
+            "!src/**/*.tw.css",
+        ],
+        dest: "dist/",
+    },
+}
 
 const stdHandler = (err, stdout, stderr) => {
     if (err) {
@@ -15,66 +47,48 @@ const stdHandler = (err, stdout, stderr) => {
 
 // Compile TS
 gulp.task("ts:build", () => {
-    return gulp.src("./src/**/*.ts")
-        .pipe(ts.createProject("tsconfig.json")())
-        .pipe(vfs.dest("./dist"));
+    return gulp.src(paths.scripts.src)
+        // .pipe(ts.createProject("tsconfig.json")())
+        .pipe(babel({
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            // compact: true,
+        }))
+        .pipe(vfs.dest(paths.scripts.dest));
 });
 // Watch TS
 gulp.task("ts:watch", () => {
-    return gulp.watch("./src/**/*.ts", gulp.series("ts:build"));
-});
-
-// Compile SCSS
-gulp.task("scss:build", () => {
-    return gulp.src("./src/style/**/*.scss")
-        .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
-        .pipe(vfs.dest("./dist/style"));
-});
-// Watch SCSS
-gulp.task("scss:watch", () => {
-    return gulp.watch("./src/style/**/*.scss", gulp.series("scss:build"));
+    return gulp.watch(paths.scripts.watch, gulp.series("ts:build"));
 });
 
 // Compile tailwindcss
 gulp.task("tailwind:build", () => {
     return exec(`
-        npx @tailwindcss/cli -i ./src/style/tailwind.tw.css -o ./dist/style/tailwind.tw.css
+        npx @tailwindcss/cli -i ${paths.styles.src} -o ${paths.styles.dest} -m
         `.trim(), stdHandler);
 });
 // Watch tailwindcss
 gulp.task("tailwind:watch", () => {
-    return gulp.watch([
-        "./src/**/*.tw.css",
-        "./src/**/*.html",
-    ], gulp.series("tailwind:build"));
+    return gulp.watch(paths.styles.watch, gulp.series("tailwind:build"));
 });
 
 // Copy src
 gulp.task("copy:build", () => {
-    return gulp.src([
-        "./src/**/*",
-        "!./src/**/*.ts",
-        "!./src/**/*.scss",
-        "!./src/style/tailwind.tw.css",
-    ]).pipe(vfs.dest("./dist"));
+    return gulp
+        .src(paths.copy.src)
+        .pipe(vfs.dest(paths.copy.dest));
 });
 // Watch src
 gulp.task("copy:watch", () => {
-    return gulp.watch([
-        "./src/**/*",
-        "!./src/**/*.ts",
-        "!./src/**/*.scss",
-        "!./src/style/tailwind.tw.css",
-    ], gulp.series("copy:build"));
+    return gulp.watch(paths.copy.watch, gulp.series("copy:build"));
 });
 
 // Global build
-gulp.task("build", gulp.parallel("ts:build", "scss:build", "tailwind:build", "copy:build"));
+gulp.task("build", gulp.parallel("ts:build", "tailwind:build", "copy:build"));
 
 // Global watch
 gulp.task("dev", () => {
     gulp.series(
         "build",
-        gulp.parallel("ts:watch", "scss:watch", "tailwind:watch", "copy:watch"),
+        gulp.parallel("ts:watch", "tailwind:watch", "copy:watch"),
     )();
 });
