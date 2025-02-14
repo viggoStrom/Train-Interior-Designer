@@ -1,14 +1,15 @@
 @import "tailwindcss";
-
-@theme {
-    --color-fg: #eee;
-    --color-bg: #1c1b22;
-    --color-mid: #5c5a67;
-    --color-primary: #09ccec;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap");
 html {
     & > body {
-        @apply bg-bg text-fg;
+        @apply bg-zinc-800 text-cyan-100;
+    }
+}
+
+button {
+    @apply bg-cyan-500 text-zinc-950 px-3 py-1 rounded-md text-center text-lg;
+
+    &:hover {
+        @apply bg-cyan-600; 
     }
 }
