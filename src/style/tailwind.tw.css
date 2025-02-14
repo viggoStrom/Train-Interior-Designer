@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-    --color-fg: #EEE;
+    --color-fg: #eee;
     --color-bg: #1c1b22;
     --color-mid: #5c5a67;
     --color-primary: #09ccec;
+}
+
+html {
+    & > body {
+        @apply bg-bg text-fg;
+    }
 }

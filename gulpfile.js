@@ -43,7 +43,10 @@ gulp.task("tailwind:build", () => {
 });
 // Watch tailwindcss
 gulp.task("tailwind:watch", () => {
-    return gulp.watch("./src/style/tailwind.tw.css", gulp.series("tailwind:build"));
+    return gulp.watch([
+        "./src/**/*.tw.css",
+        "./src/**/*.html",
+    ], gulp.series("tailwind:build"));
 });
 
 // Copy src
