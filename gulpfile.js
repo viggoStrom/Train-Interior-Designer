@@ -1,5 +1,8 @@
 const gulp = require("gulp");
 const vfs = require("vinyl-fs");
+const rollup = require("gulp-rollup");
+const nodeResolve = require("@rollup/plugin-node-resolve").nodeResolve;
+const commonjs = require("@rollup/plugin-commonjs");
 const ts = require("gulp-typescript");
 const babel = require("gulp-babel");
 const { exec } = require("child_process");
@@ -39,7 +42,6 @@ const paths = {
 const stdHandler = (err, stdout, stderr) => {
     if (err) {
         console.error(err);
-        return;
     }
     console.log(stdout);
     console.error(stderr);
@@ -48,12 +50,15 @@ const stdHandler = (err, stdout, stderr) => {
 // Compile TS
 gulp.task("ts:build", () => {
     return gulp.src(paths.scripts.src)
-        // .pipe(ts.createProject("tsconfig.json")())
+        .pipe(ts.createProject("tsconfig.json")())
         .pipe(babel({
             presets: ["@babel/preset-env", "@babel/preset-react"],
             // compact: true,
         }))
-        .pipe(vfs.dest(paths.scripts.dest));
+        .pipe(vfs.dest(paths.scripts.dest))
+        .once("", () => {
+           exec(`yarn rollup -c rollup.config.js --bundleConfigAsCjs --compact`, stdHandler)
+        });
 });
 // Watch TS
 gulp.task("ts:watch", () => {
