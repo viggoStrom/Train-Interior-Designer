@@ -4,8 +4,8 @@ import Carriage from "./components/carriage";
 
 console.log("main");
 
-const rootElement = document.querySelector("section");
+const rootElement = document.querySelector("#train-car-container");
 if (rootElement) {
     const root = ReactDOM.createRoot(rootElement);
-    root.render(<Carriage></Carriage>);
+    root.render(<Carriage width={5} height={15} />);
 }
