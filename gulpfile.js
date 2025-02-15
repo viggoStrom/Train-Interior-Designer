@@ -1,11 +1,6 @@
 const gulp = require("gulp");
 const vfs = require("vinyl-fs");
-const rollup = require("gulp-rollup");
-const nodeResolve = require("@rollup/plugin-node-resolve").nodeResolve;
-const commonjs = require("@rollup/plugin-commonjs");
-const ts = require("gulp-typescript");
-const babel = require("gulp-babel");
-const { exec } = require("child_process");
+const { exec } = require("node:child_process");
 
 const paths = {
     scripts: {
