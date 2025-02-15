@@ -49,16 +49,9 @@ const stdHandler = (err, stdout, stderr) => {
 
 // Compile TS
 gulp.task("ts:build", () => {
-    return gulp.src(paths.scripts.src)
-        .pipe(ts.createProject("tsconfig.json")())
-        .pipe(babel({
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-            // compact: true,
-        }))
-        .pipe(vfs.dest(paths.scripts.dest))
-        .once("", () => {
-           exec(`yarn rollup -c rollup.config.js --bundleConfigAsCjs --compact`, stdHandler)
-        });
+    return exec(`
+        yarn webpack --config webpack.config.js
+        `.trim(), stdHandler)
 });
 // Watch TS
 gulp.task("ts:watch", () => {

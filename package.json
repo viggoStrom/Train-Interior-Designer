@@ -1,10 +1,10 @@
 {
   "name": "train-interior-designer",
   "version": "1.0.0",
-  "main": "dist/main.js",
   "repository": "https://github.com/viggoStrom/Train-Interior-Designer.git",
   "author": "Viggo Ström <viggostrom05+trainRogue@gmail.com>",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "gulp dev",
     "build": "gulp build"
@@ -27,9 +27,13 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rollup": "^4.34.7",
+    "source-map-loader": "^5.0.0",
     "tailwindcss": "^4.0.6",
+    "ts-loader": "^9.5.2",
     "typescript": "^5.7.3",
-    "vinyl-fs": "^4.0.0"
+    "vinyl-fs": "^4.0.0",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
   },
   "dependencies": {
     "@types/three": "^0.172.0",
