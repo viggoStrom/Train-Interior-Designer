@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+* {
     scrollbar-width: thin;
+    scrollbar-color: #164e63 #333;
+}
 
+html {
     & > body {
         & > main {
-            @apply flex-1;
+            @apply flex-1 w-full;
         }
     }
 }
@@ -15,7 +18,8 @@ html {
 button {
     @apply bg-cyan-600 text-zinc-100 font-bold text-lg py-1 px-3 rounded-md;
 }
-a:has(> button) { /* Nice for when a button is wrapped in a Link while tabbing */
+a:has(> button) {
+    /* Nice for when a button is wrapped in a Link while tabbing */
     @apply rounded-md;
 }
 
